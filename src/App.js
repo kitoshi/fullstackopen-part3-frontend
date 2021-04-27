@@ -60,7 +60,7 @@ const App = () => {
           personsService
           .update(putID, numberObject)
           .then(response => {
-            setTimeout(() => {}, 100000)
+            setTimeout(() => {}, 1000000)
             setPersons(persons.map(person => person.id !== putID ? person : response.data))
             setNewNumber('')
           })
@@ -80,7 +80,7 @@ const App = () => {
               `'${numberObject.name}' was added`)
             setTimeout(() => {
               setSuccessMessage(null)
-            }, 5000)
+            }, 50000)
           })
         }
       }
@@ -114,9 +114,9 @@ const App = () => {
           )
           setTimeout(() => {
             setErrorMessage(null)
-          }, 5000)})
+          }, 500000)})
       .then(
-        setTimeout(() => {}, 100000),
+        setTimeout(() => {}, 1000000),
         personsService
           .getAll()
           .then(response => {
