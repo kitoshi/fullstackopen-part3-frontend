@@ -59,8 +59,7 @@ const App = () => {
           window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
           personsService
           .update(putID, numberObject)
-          .then(response => {
-            setTimeout(() => {}, 1000000)
+          .then(async response => {
             setPersons(persons.map(person => person.id !== putID ? person : response.data))
             setNewNumber('')
           })
@@ -73,7 +72,7 @@ const App = () => {
           }
           personsService
           .create(numberObject)
-          .then(response => {
+          .then(async response => {
             setPersons(persons.concat(response.data))
             setNewNumber('')
             setSuccessMessage(
@@ -114,17 +113,18 @@ const App = () => {
           )
           setTimeout(() => {
             setErrorMessage(null)
-          }, 500000)})
-      .then(
-        setTimeout(() => {}, 1000000),
+          }, 5000)})
+      .then (new Promise (function(resolve, reject) {
+            setTimeout(() => resolve(1), 1000); // (*)
+            }))
+      .then(function(result){
         personsService
           .getAll()
-          .then(response => {
+          .then(async response => {
             setPersons(response.data)
             console.log(response.data)
           })
-          
-          )
+          })
     }
     return (
       <ul key={filterItems.id}>{filterItems.name} {filterItems.number} <button onClick={removeNumber} id={filterItems.id}>Remove</button></ul>
