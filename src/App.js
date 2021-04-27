@@ -57,12 +57,24 @@ const App = () => {
         const putID = isDuplicate.indexOf(newName) + 1
         if (isDuplicate.includes(newName)) {
           window.confirm(`${newName} is already added to phonebook, replace the old number with a new one?`)
+          console.log(persons)
           personsService
-          .update(putID, numberObject)
-          .then(async response => {
-            setPersons(persons.map(person => person.id !== putID ? person : response.data))
+          .update(persons[putID - 1].id, numberObject)
+          .then (new Promise (function(resolve, reject) {
+            setTimeout(() => resolve(1), 1000); // (*)
+            }))
+          .then(function(result){
+            setPersons(persons.map(person => person.id !== putID ? person : result.data))
             setNewNumber('')
           })
+          .then(function(result){
+            personsService
+              .getAll()
+              .then(async response => {
+                setPersons(response.data)
+                console.log(response.data)
+              })
+              })
           }
         else {
           const numberObject = {
