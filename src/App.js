@@ -95,9 +95,17 @@ const App = () => {
           })
           .catch(error => {
             setErrorMessage(
-              `${error.response.data}`
+              `${console.log(error)}`
             )
           })
+          .then(function(result){
+            personsService
+              .getAll()
+              .then(async response => {
+                setPersons(response.data)
+                console.log(response.data)
+              })
+              })
         }
       }
 
@@ -140,11 +148,6 @@ const App = () => {
           .then(async response => {
             setPersons(response.data)
             console.log(response.data)
-          })
-          .catch(error => {
-            setErrorMessage(
-              `${error.response.data}`
-            )
           })
           })
     }
