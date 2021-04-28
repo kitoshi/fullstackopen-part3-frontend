@@ -7,9 +7,9 @@ const Persons = (props) => {
 
     return (
         <>
-        {props.filterItems.map(props.filterList)}
+            {props.filterItems.map(props.filterList)}
         </>
-        )
+    )
 }
 
 
