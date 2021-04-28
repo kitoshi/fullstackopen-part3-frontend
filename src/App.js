@@ -93,9 +93,9 @@ const App = () => {
               setSuccessMessage(null)
             }, 50000)
           })
-          .catch(error => {
+          .catch(response => {
             setErrorMessage(
-              `${console.log(error)}`
+              `${response}`
             )
           })
           .then(function(result){
