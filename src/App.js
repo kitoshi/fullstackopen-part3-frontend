@@ -93,10 +93,12 @@ const App = () => {
               setSuccessMessage(null)
             }, 50000)
           })
-          .catch(response => {
-            setErrorMessage(
-              `${response}`
+          .catch(error => {
+            const mongoerror = JSON.stringify(error.response.data)
+            setErrorMessage (
+              `'${mongoerror}'`
             )
+            console.log(error.response.data)
           })
           .then(function(result){
             personsService
