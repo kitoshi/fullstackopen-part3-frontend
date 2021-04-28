@@ -93,6 +93,11 @@ const App = () => {
               setSuccessMessage(null)
             }, 50000)
           })
+          .catch(error => {
+            setErrorMessage(
+              `${error.response.data}`
+            )
+          })
         }
       }
 
@@ -135,6 +140,11 @@ const App = () => {
           .then(async response => {
             setPersons(response.data)
             console.log(response.data)
+          })
+          .catch(error => {
+            setErrorMessage(
+              `${error.response.data}`
+            )
           })
           })
     }
