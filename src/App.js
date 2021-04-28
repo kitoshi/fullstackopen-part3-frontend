@@ -98,6 +98,14 @@ const App = () => {
               `${error.response.data}`
             )
           })
+          .then(function(result){
+            personsService
+              .getAll()
+              .then(async response => {
+                setPersons(response.data)
+                console.log(response.data)
+              })
+              })
         }
       }
 
